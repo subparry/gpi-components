@@ -6,6 +6,7 @@ const colors = {
   darkRed: '#c40000',
   lightRed: 'rgba(221, 5, 0, 0.5)',
   black: '#444242',
+  gray: 'rgba(0, 0, 0, 0.08)',
 }
 
 const fonts = {

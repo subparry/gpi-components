@@ -14,6 +14,9 @@ const Input = styled.input`
   text-overflow: ellipsis;
   outline: 0;
   font-size: ${defaultTheme.fonts.main.size};
+  &:focus {
+    border-color: ${defaultTheme.colors.gray};
+  }
 `
 
 const TextInput = ({

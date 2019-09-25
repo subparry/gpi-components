@@ -1,4 +1,11 @@
-const getButtonsWithTheme = ({ red, darkRed, lightRed, white, black }) => ({
+const getButtonsWithTheme = ({
+  red,
+  darkRed,
+  lightRed,
+  white,
+  black,
+  gray,
+}) => ({
   primary: {
     base: {
       bg: red,
@@ -24,12 +31,12 @@ const getButtonsWithTheme = ({ red, darkRed, lightRed, white, black }) => ({
   secondary: {
     base: {
       bg: white,
-      border: `1px solid rgba(0, 0, 0, 0.08);`,
+      border: `1px solid ${gray}`,
       color: black,
     },
     hover: {
       bg: 'rgba(0, 0, 0, 0.08)',
-      border: `1px solid rgba(0, 0, 0, 0.08);`,
+      border: `1px solid ${gray}`,
       color: black,
     },
     focus: {
