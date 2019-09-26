@@ -24,7 +24,7 @@ const getButtonsWithTheme = ({
     },
     disabled: {
       bg: lightRed,
-      border: `1px solid ${lightRed}`,
+      border: `1px solid transparent`,
       color: white,
     },
   },

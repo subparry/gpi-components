@@ -18,4 +18,9 @@ storiesOf('Button', module)
   ))
   .add('with type', () => <Button type="submit">Submit</Button>)
   .add('with disabled', () => <Button disabled={true}>Disabled</Button>)
+  .add('with disabled and variant', () => (
+    <Button disabled={true} variant="secondary">
+      Secondary disabled
+    </Button>
+  ))
   .add('with fullwidth', () => <Button fullWidth={true}>Full Width</Button>)
