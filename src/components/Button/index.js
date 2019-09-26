@@ -1,70 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import defaultTheme from '../../styles/defaultTheme'
+import './Button.css'
 
-const {
-  fonts: {
-    main: { family, size },
-  },
-  buttons,
-} = defaultTheme
+const admittedVariants = ['primary', 'secondary']
 
-const getStylesByStatus = variant => status => {
-  const currentButton = buttons[variant] || buttons.primary
-  const { bg, border, color } = currentButton[status] || currentButton.base
-  return `
-    background-color: ${bg};
-    border: ${border};
-    color: ${color};
-  `
-}
-
-const StyledButton = styled.button`
-  min-width: 180px;
-  min-height: 50px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-family: ${family};
-  font-size: ${size};
-  transition: background-color 0.2s ease-in-out;
-  cursor: pointer;
-  outline: 0;
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
-  ${({ variant, disabled }) => {
-    const buttonStyles = getStylesByStatus(variant)
-    return disabled
-      ? `
-      ${buttonStyles('disabled')}
-      cursor: not-allowed;
-    `
-      : `
-      ${buttonStyles('base')}
-      &:focus {
-        ${buttonStyles('focus')}
-      }
-      &:hover {
-        ${buttonStyles('hover')}
-      }
-      &:active {
-        border-top-width: 2px;
-        border-bottom-width: 0px;
-      }
-    `
-  }}
-`
+const getVariant = variant =>
+  admittedVariants.includes(variant) ? `__${variant}` : '__primary'
 
 const Button = ({
   children = '',
-  className,
+  className = '',
   disabled = false,
   fullWidth = false,
   onClick,
   type = 'button',
   variant = 'primary',
 }) => (
-  <StyledButton
-    className={className}
+  <button
+    className={`gpi-btn${getVariant(variant)}${
+      disabled ? `--disabled` : ''
+    } ${className}`}
     disabled={disabled}
     fullWidth={fullWidth}
     onClick={onClick}
@@ -72,7 +27,7 @@ const Button = ({
     variant={variant}
   >
     {children}
-  </StyledButton>
+  </button>
 )
 
 Button.propTypes = {
