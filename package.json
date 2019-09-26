@@ -1,6 +1,6 @@
 {
   "name": "goplaceit-component-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Component library based on GPI brand",
   "main": "lib/index/index.js",
   "husky": {
