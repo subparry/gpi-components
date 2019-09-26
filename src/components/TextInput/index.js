@@ -1,21 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-// const Input = styled.input`
-//   height: 50px;
-//   border-radius: 30px;
-//   border: 1px solid transparent;
-//   background-color: ${defaultTheme.colors.white};
-//   padding-left: 21px;
-//   padding-right: 21px;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   outline: 0;
-//   font-size: ${defaultTheme.fonts.main.size};
-//   &:focus {
-//     border-color: ${defaultTheme.colors.gray};
-//   }
-// `
+import './TextInput.css'
 
 const TextInput = ({
   className,
@@ -25,7 +10,7 @@ const TextInput = ({
   value,
 }) => (
   <input
-    className={className}
+    className={`input-gpi ${className}`}
     disabled={disabled}
     onChange={onChange}
     placeholder={placeholder}

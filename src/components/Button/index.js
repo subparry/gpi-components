@@ -17,11 +17,10 @@ const Button = ({
   variant = 'primary',
 }) => (
   <button
-    className={`gpi-btn${getVariant(variant)}${
-      disabled ? `--disabled` : ''
+    className={`gpi-btn${getVariant(variant)}${disabled ? `--disabled` : ''} ${
+      fullWidth ? `gpi-btn--full-width` : ''
     } ${className}`}
     disabled={disabled}
-    fullWidth={fullWidth}
     onClick={onClick}
     type={type}
     variant={variant}

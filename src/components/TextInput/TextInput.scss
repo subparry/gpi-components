@@ -1,0 +1,17 @@
+@import '../../styles/color-schema.scss';
+
+.input-gpi {
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  background-color: $white;
+  padding-left: 21px;
+  padding-right: 21px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: 0;
+  font-size: 15px;
+  &:focus {
+    border-color: $gray;
+  }
+}

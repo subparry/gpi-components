@@ -17,6 +17,10 @@
   }
 }
 
+.gpi-btn--full-width {
+  width: 100%;
+}
+
 .gpi-btn__primary {
   @extend .gpi-btn;
   background-color: $red;
