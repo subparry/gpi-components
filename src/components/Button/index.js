@@ -30,7 +30,7 @@ const Button = ({
 )
 
 Button.propTypes = {
-  children: PropTypes.oneOf([PropTypes.string, PropTypes.element]),
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   className: PropTypes.string,
   disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,
