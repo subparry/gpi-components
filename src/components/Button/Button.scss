@@ -48,7 +48,7 @@
   }
 }
 
-.gpi-btn__secondary {
+.gpi-btn__neutral {
   @extend .gpi-btn;
   background-color: $white;
   color: $black;
@@ -59,13 +59,25 @@
   }
 }
 
-.gpi-btn__secondary--disabled {
-  @extend .gpi-btn__secondary;
+.gpi-btn__secondary {
+  @extend .gpi-btn__neutral;
+  &:focus,
+  &:hover {
+    background-color: $dark-red;
+    border-color: $dark-red;
+    color: $white;
+  }
+}
+
+.gpi-btn__secondary--disabled,
+.gpi-btn__neutral--disabled {
+  @extend .gpi-btn__neutral;
   color: $gray;
   cursor: not-allowed;
   &:hover,
   &:focus {
     background-color: $white;
     color: $gray;
+    border-color: $gray;
   }
 }

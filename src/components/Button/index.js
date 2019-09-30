@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Button.css'
 
-const admittedVariants = ['primary', 'secondary']
+const admittedVariants = ['primary', 'secondary', 'neutral']
 
 const getVariant = variant =>
   admittedVariants.includes(variant) ? `__${variant}` : '__primary'
