@@ -27,6 +27,7 @@ fs.readdirSync(componentsPath)
 const externals = []
   .concat(Object.keys(packageInfo.dependencies))
   .concat(componentExternals)
+  .concat('react', 'react-dom')
 
 module.exports = {
   entry: entryPoints,
