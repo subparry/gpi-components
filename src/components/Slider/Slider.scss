@@ -1,3 +1,5 @@
+@import '../../styles/color-schema.scss';
+
 .sliders-container {
   position: relative;
   height: 50px;
@@ -14,7 +16,7 @@
   width: calc(100% - 38px);
   transform: translateX(1px);
   z-index: 2;
-  border: $border-width solid #444242;
+  border: $border-width solid $black;
   border-radius: 10px;
   .active-track {
     transform: translate(-$border-width, -$border-width);
@@ -23,7 +25,7 @@
     top: 0;
     left: 0;
     z-index: 3;
-    border: $border-width solid #dd0500;
+    border: $border-width solid $red;
     border-radius: 10px;
   }
 }
@@ -72,7 +74,7 @@ input[type='range'] {
 }
 
 .sliders-container span {
-  font-family: 'Poppins', 'sans-serif';
+  font-family: 'Poppins', sans-serif;
   pointer-events: none;
   font-size: 20px;
   font-weight: bold;
@@ -81,5 +83,5 @@ input[type='range'] {
   position: absolute;
   top: -40px;
   z-index: 6;
-  color: #f8f8f9;
+  color: $white;
 }

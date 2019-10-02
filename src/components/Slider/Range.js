@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Range = ({ min, max, step, value, onInput }) => {
+const Range = ({ min, max, step, value, onChange }) => {
   return (
     <input
       type="range"
@@ -8,7 +8,7 @@ const Range = ({ min, max, step, value, onInput }) => {
       max={max}
       step={step}
       value={value}
-      onInput={onInput}
+      onChange={onChange}
     />
   )
 }

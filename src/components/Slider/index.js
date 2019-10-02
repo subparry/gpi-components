@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Range from './Range'
 import './Slider.css'
 
-const Slider = ({ min = 1, max = 7, step = 1, double = false }) => {
+const Slider = ({ min = 1, max = 7, step = 1, double = false, setValues }) => {
+  // firstHandlePosition refers to the value of the first handle of the slider. If the slider is double, it is assigned to the minimum value,
+  // if the slider is simple, it is assigned to the middle value rounded down
   const [firstHandlePosition, setFirstHandlePosition] = useState(
     double ? min : min + Math.floor(max / 2)
   )
@@ -15,12 +18,22 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false }) => {
       )
   }, [max])
 
+  useEffect(() => {
+    // call the provided callback (if defined) with different values if the slider is double whenever the slider changes its value
+    if (setValues) {
+      double
+        ? setValues(firstHandlePosition, secondHandlePosition)
+        : setValues(firstHandlePosition)
+    }
+  }, [firstHandlePosition, secondHandlePosition])
+
   if (step >= max - min) {
     throw new Error(
       'ERROR: Step prop cannot be greater or equal than the slider total length'
     )
   }
 
+  // calculates the length of the red fill of the slider based on the position of the handle (or handles)
   const calcFillLength = () => {
     const currentLength = double
       ? Math.abs(firstHandlePosition - secondHandlePosition)
@@ -28,40 +41,50 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false }) => {
     return (currentLength * 100) / (max - min)
   }
 
+  // Calculates the red stripe distance from the left in case there's two handles
   const calcLeft = () =>
     ((Math.min(firstHandlePosition, secondHandlePosition) - min) * 100) /
     (max - min)
 
+  // Uses calcFillLength and calcLeft to return a styles object that will be applied to the red stripe
   const calcStyles = () =>
     double
       ? { width: calcFillLength() + '%', left: calcLeft() + '%' }
       : { width: calcFillLength() + '%' }
 
+  // Calculates and adjusts the position of the numbers representing the slider current value
   const calcSpanPosition = handle => {
     const currentLength = handle - min
     return {
       left: `calc(${(currentLength * 100) / (max - min)}% - ${handleMaxValue(
         handle,
         'messagePosition',
-        5
+        6
       )}px)`,
     }
   }
 
-  const handleInput = (e, secondSlider = false) =>
-    secondSlider
-      ? setSecondHandlePosition(e.target.value)
-      : setFirstHandlePosition(e.target.value)
+  // Callback function for the change event on the HTML5 input[type=range]
+  const handleChange = (e, secondSlider = false) => {
+    e.persist()
+    return secondSlider
+      ? setSecondHandlePosition(parseInt(e.target.value))
+      : setFirstHandlePosition(parseInt(e.target.value))
+  }
 
+  // Function handles the adjustments for when one of the handles reaches the max value
   const handleMaxValue = (valueToCompare, fix, defaultValue) => {
     if (valueToCompare == max) {
       switch (fix) {
+        // Adds a plus sign to the number displayed in the tooltip
         case 'spanMessage':
-          return valueToCompare + '+'
+          return defaultValue + '+'
+        // Adjusts the tooltip number position (because of the plus sign addition)
         case 'messagePosition':
-          return 10
+          return 12
+
         default:
-          return valueToCompare
+          return defaultValue
       }
     } else {
       return defaultValue
@@ -75,7 +98,7 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false }) => {
         max={max}
         step={step}
         value={firstHandlePosition}
-        onInput={handleInput}
+        onChange={handleChange}
       />
       {double && (
         <Range
@@ -83,7 +106,7 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false }) => {
           max={max}
           step={step}
           value={secondHandlePosition}
-          onInput={e => handleInput(e, true)}
+          onChange={e => handleChange(e, true)}
         />
       )}
       <div className="tracks-container">
@@ -103,11 +126,18 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false }) => {
             )}
           </span>
         )}
-        {console.log(calcStyles())}
         <div className="active-track" style={calcStyles()}></div>
       </div>
     </div>
   )
+}
+
+Slider.propTypes = {
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
+  double: PropTypes.bool,
+  setValues: PropTypes.func.isRequired,
 }
 
 export default Slider
