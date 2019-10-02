@@ -1,14 +1,40 @@
 .sliders-container {
-  position: absolute;
-  display: flex;
+  position: relative;
+  height: 50px;
   width: 100%;
 }
 
+.tracks-container {
+  $border-width: 2px;
+
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  height: 0px;
+  width: calc(100% - 38px);
+  transform: translateX(1px);
+  z-index: 2;
+  border: $border-width solid #444242;
+  border-radius: 10px;
+  .active-track {
+    transform: translate(-$border-width, -$border-width);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    border: $border-width solid #dd0500;
+    border-radius: 10px;
+  }
+}
+
 input[type='range'] {
+  position: absolute;
+  pointer-events: none;
   top: 0;
-  left: 0;
   width: 100%;
   border: none;
+  background: transparent;
   -webkit-appearance: none;
 
   &:focus {
@@ -16,37 +42,44 @@ input[type='range'] {
   }
 
   &::-webkit-slider-thumb {
-    background-color: red;
     -webkit-appearance: none;
-
-    color: red;
-    height: 100px;
-    box-shadow: 0.9px 0.9px 1px #000031, 0px 0px 0.9px #00004b;
-    border: 1.8px solid #00001e;
-    height: 26px;
-    width: 26px;
-    border-radius: 15px;
-    background: #ffffff;
+    pointer-events: auto;
+    position: relative;
+    overflow-x: visible !important;
+    appearance: none;
+    background: url('./sliderHandle.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center;
+    border: 0;
+    height: 40px;
+    width: 40px;
     cursor: pointer;
-  }
-
-  &::-ms-thumb {
-    background-color: red;
-    color: red;
-    height: 100px;
-  }
-  &::-moz-range-thumb {
-    background-color: red;
-    color: red;
-    height: 100px;
+    z-index: 100;
   }
 
   &::-webkit-slider-runnable-track {
-    border-radius: 4px;
-    height: 4px;
-    box-shadow: none;
-    outline: none;
-    cursor: pointer;
-    background-color: red;
+    z-index: 0;
+    // border-radius: 4px;
+    // height: 4px;
+    // width: calc(100% + 80px);
+    // text-align: center;
+    // box-shadow: none;
+    // outline: none;
+    // cursor: pointer;
+    // background-color: red;
   }
+}
+
+.sliders-container span {
+  font-family: 'Poppins', 'sans-serif';
+  pointer-events: none;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  cursor: default;
+  position: absolute;
+  top: -40px;
+  z-index: 6;
+  color: #f8f8f9;
 }
