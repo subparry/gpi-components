@@ -17,16 +17,17 @@ const icons = {
 
 const SocialIcon = ({ variant }) => {
   const currentIcon = icons[variant]
-  if (!currentIcon) {
-    console.error(
-      `Invalid icon variant. Choose one from: [${Object.keys(icons)}]`
-    )
-  }
   return <img src={currentIcon} alt="" />
 }
 
 SocialIcon.propTypes = {
-  variant: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf([
+    'facebook',
+    'instagram',
+    'linkedin',
+    'twitter',
+    'youtube',
+  ]),
 }
 
 export default SocialIcon
