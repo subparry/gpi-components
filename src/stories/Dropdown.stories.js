@@ -9,11 +9,29 @@ const options = [
   { label: 'Casas y departamentos', value: '1' },
   { label: 'Oficina', value: '2' },
 ]
+const id = 'test'
+const setValue = () => action('`setValue` callback was called')
 
-storiesOf('Dropdown', module).add('With default values', () => (
-  <Dropdown
-    id="test"
-    options={options}
-    setValue={action('set value was called')}
-  />
-))
+storiesOf('Dropdown', module)
+  .add('With default values', () => (
+    <Dropdown id={id} options={options} setValue={setValue} />
+  ))
+  .add('With position', () => (
+    <Dropdown
+      id={id}
+      options={options}
+      setValue={setValue}
+      position="BOTTOM_RIGHT"
+    />
+  ))
+  .add('With wrong position', () => (
+    <Dropdown
+      id={id}
+      options={options}
+      setValue={setValue}
+      position="bottomright"
+    />
+  ))
+  .add('With `defaultoption` option', () => (
+    <Dropdown defaultOption={2} id={id} options={options} setValue={setValue} />
+  ))

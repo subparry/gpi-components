@@ -60,6 +60,7 @@ const Dropdown = ({
             disabled={disabled}
             key={`option_${id}_${i}`}
             onClick={selectOption}
+            type="button"
           >
             {label}
           </button>
