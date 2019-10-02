@@ -12,6 +12,7 @@ const Button = ({
   className = '',
   disabled = false,
   fullWidth = false,
+  onBlur,
   onClick,
   type = 'button',
   variant = 'primary',
@@ -21,6 +22,7 @@ const Button = ({
       fullWidth ? `gpi-btn--full-width` : ''
     } ${className}`}
     disabled={disabled}
+    onBlur={onBlur}
     onClick={onClick}
     type={type}
     variant={variant}
@@ -34,6 +36,7 @@ Button.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  onBlur: PropTypes.func,
   onClick: PropTypes.func,
   type: PropTypes.string,
   variant: PropTypes.string,
