@@ -7,10 +7,10 @@
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   cursor: pointer;
   outline: 0;
-  width: 'auto';
+  width: auto;
   &:active {
     border-top-width: 2px;
     border-bottom-width: 0px;
