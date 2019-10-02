@@ -1,0 +1,72 @@
+@import '../../styles/color-schema.scss';
+.gpi-modal {
+  z-index: 10;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-shadow: 5px 5px 10px black;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #b8b8b8;
+  padding: 18px;
+  transition: opacity 0.2s ease;
+}
+
+.gpi-modal__header {
+  position: relative;
+  top: 0;
+  z-index: 1;
+}
+
+.gpi-modal__footer {
+  padding-top: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 0;
+  z-index: 1;
+}
+
+.gpi-modal__content {
+  overflow-y: scroll;
+  width: 100%;
+  z-index: 11;
+}
+
+.gpi-modal--opened {
+  @extend .gpi-modal;
+  z-index: 5;
+  opacity: 1;
+}
+.gpi-modal--closed {
+  @extend .gpi-modal;
+  z-index: -10;
+  opacity: 0;
+}
+
+.gpi-modal__backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  transition: opacity 0.2s ease 0.2s;
+}
+
+.gpi-modal--scroll-lock {
+  overflow: -moz-hidden-unscrollable;
+  overflow: hidden;
+}
+
+hr.gpi-modal__hr {
+  border: 1px solid $gray;
+  width: 100%;
+}
