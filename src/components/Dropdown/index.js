@@ -17,6 +17,7 @@ const Dropdown = ({
   options,
   position = 'BOTTOM_LEFT',
   setValue,
+  fixedWidth = true,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [option, setOption] = useState(defaultOption)
@@ -44,8 +45,29 @@ const Dropdown = ({
 
   return (
     <div className="gpi-dropdown" ref={dropdownRef}>
-      <Button onBlur={handleBlur} onClick={toggleDropdown} variant="neutral">
+      <Button
+        onBlur={handleBlur}
+        onClick={toggleDropdown}
+        variant="neutral"
+        className={`gpi-dropdown__main-button${
+          fixedWidth ? `--fixed-width` : ``
+        }`}
+      >
         {options[option].label}
+
+        <svg
+          id="Capa_1"
+          data-name="Capa 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          className={`gpi-dropdown__arrow${isOpen ? `--open` : ``}`}
+        >
+          <title>20x20 arrow down</title>
+          <path
+            className="gpi-dropdown__chevron"
+            d="M10.49,15.8a2.47,2.47,0,0,0,1.27-.66l6.82-6.8a2.46,2.46,0,0,0-3.47-3.48L10,10,4.86,4.86a2.44,2.44,0,0,0-3.45,0A2.4,2.4,0,0,0,.7,6.6a2.45,2.45,0,0,0,.71,1.74l6.83,6.8a2,2,0,0,0,.85.53A2.24,2.24,0,0,0,10.49,15.8Z"
+          />
+        </svg>
       </Button>
       <div
         className={`gpi-dropdown__options--${validPositions[position]} ${
