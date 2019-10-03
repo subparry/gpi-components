@@ -22,7 +22,7 @@ const Modal = ({
   closeModal,
   customHeight = '80vh',
   customWidth = '80vw',
-  lockScroll = false,
+  lockScroll = true,
   heightFix = true,
   overlayScroll = false,
 }) => {
@@ -118,11 +118,12 @@ Modal.propTypes = {
   HeaderComponent: PropTypes.func,
   FooterComponent: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired,
-  customHeight: PropTypes.string,
+  closeModal: PropTypes.func.isRequired, //Function that closes the modal (changes the isOpen state)
+  customHeight: PropTypes.string, //If height auto, add overlayScroll=true and lockScroll=false
   customWidth: PropTypes.string,
-  lockScroll: PropTypes.bool,
-  heightFix: PropTypes.bool,
+  lockScroll: PropTypes.bool, //Block the scrolling of the background content while the modal is open
+  heightFix: PropTypes.bool, //Adds 40px of padding to the body of the modal in case the heading content reaches the red close X
+  overlayScroll: PropTypes.bool, //Changes display of the modal to absolute so it can scroll with the body
 }
 
 export default Modal

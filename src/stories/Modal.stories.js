@@ -122,6 +122,7 @@ storiesOf('Modal', module)
       customHeight="auto"
       customWidth="30vw"
       overlayScroll
+      lockScroll={false}
     >
       {longContent}
     </Modal>
@@ -133,6 +134,7 @@ storiesOf('Modal', module)
       customWidth="350px"
       backContent={extraLongContent}
       overlayScroll
+      lockScroll={false}
     >
       {longContent}
     </Container>
@@ -142,6 +144,7 @@ storiesOf('Modal', module)
     <Container
       HeaderComponent={() => <h2>Header</h2>}
       backContent={extraLongContent}
+      lockScroll={false}
     >
       {longContent}
     </Container>
@@ -150,7 +153,6 @@ storiesOf('Modal', module)
     <Container
       HeaderComponent={() => <h2>Header</h2>}
       backContent={extraLongContent}
-      lockScroll
     >
       {longContent}
     </Container>
