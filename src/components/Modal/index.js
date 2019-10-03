@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import './Modal.css'
+import redx from './20x20_X.svg'
 
 const noPropagation = e => {
   e.stopPropagation()
 }
 
 const toggleScroll = () => {
-  document.body.classList.toggle('scroll-lock')
+  document.body.classList.toggle('gpi-modal--scroll-lock')
 }
 
 const Modal = ({
@@ -19,10 +20,11 @@ const Modal = ({
   customHeight = '90vh',
   customWidth = '80vw',
   lockScroll,
+  withCloseX,
 }) => {
   useEffect(() => {
     isOpen &&
-      document.querySelector('.modal-content').scrollTo({
+      document.querySelector('.gpi-modal__content').scrollTo({
         top: 0,
       })
     if (lockScroll && isOpen) {
@@ -49,34 +51,44 @@ const Modal = ({
   }, [isOpen])
 
   return (
-    // Backdrop
     <div
-      onClick={onModalClose}
-      className={`gpi-modal__backdrop`}
-      style={{
-        transition: isOpen
-          ? 'opacity 0.2s ease 0.2s'
-          : 'opacity 0.2s ease 0.2s, z-index 0s linear 0.4s',
-      }}
+      className={`gpi-modal__main-container${isOpen ? `--opened` : `--closed`}`}
     >
+      {
+        // Overlay
+      }
+
+      <div
+        onClick={onModalClose}
+        className={`gpi-modal__overlay${isOpen ? `--opened` : `--closed`}`}
+        style={{
+          transition: isOpen
+            ? 'opacity 0.3s ease 0.1s'
+            : 'opacity 0.3s ease 0.1s, z-index 0s linear 0.2s',
+        }}
+      ></div>
       {
         //Modal
       }
       <div
         onClick={noPropagation}
-        className={`${isOpen ? 'gpi-modal--opened' : 'gpi-modal--closed'}`}
+        className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
         style={{ height: customHeight, width: customWidth }}
       >
+        <img
+          src={redx}
+          onClick={onModalClose}
+          style={{ cursor: 'pointer' }}
+          className={`gpi-modal__closex`}
+        />
         {HeaderComponent && (
           <div className="gpi-modal__header">
             <HeaderComponent />
-            <hr className="gpi-modal__hr" />
           </div>
         )}
-        <div className="modal-content gpi-modal__content">{children}</div>
+        <div className="gpi-modal__content">{children}</div>
         {FooterComponent && (
           <div className="gpi-modal__footer">
-            <hr className="gpi-modal__hr" />
             <FooterComponent />
           </div>
         )}
@@ -93,6 +105,7 @@ Modal.propTypes = {
   customHeight: PropTypes.string,
   customWidth: PropTypes.string,
   lockScroll: PropTypes.bool,
+  withCloseX: PropTypes.bool,
 }
 
 export default Modal
