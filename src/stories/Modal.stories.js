@@ -39,18 +39,16 @@ property that refers to a visible dialog title. A label specified by
 aria-label. Optionally, the aria-describedby property is set on the
 element with the dialog role to indicate which element or elements in the
 dialog con`
-const Container = ({ Header }) => {
+const extraLongContent = longContent + longContent + longContent + longContent
+const Container = ({ backContent, children, ...props }) => {
   const [isOpen, setIsOpen] = useState(true)
   return (
-    <Modal
-      isOpen={isOpen}
-      closeModal={() => setIsOpen(false)}
-      customHeight="25vh"
-      customWidth="30vw"
-      HeaderComponent={Header}
-    >
-      Hello, this is the content
-    </Modal>
+    <>
+      {backContent}
+      <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)} {...props}>
+        {children}
+      </Modal>
+    </>
   )
 }
 
@@ -115,5 +113,45 @@ storiesOf('Modal', module)
   ))
   .add('closeable modal', () => <Container />)
   .add('closeable modal with Header', () => (
-    <Container Header={() => <h2 style={{ margin: 0 }}>Header</h2>} />
+    <Container HeaderComponent={() => <h2 style={{ margin: 0 }}>Header</h2>} />
+  ))
+  .add('With height auto', () => (
+    <Modal
+      isOpen={true}
+      closeModal={action('closed modal!')}
+      customHeight="auto"
+      customWidth="30vw"
+      overlayScroll
+    >
+      {longContent}
+    </Modal>
+  ))
+  .add('With height auto and long back content', () => (
+    <Container
+      HeaderComponent={() => <h2>Header</h2>}
+      customHeight="auto"
+      customWidth="350px"
+      backContent={extraLongContent}
+      overlayScroll
+    >
+      {longContent}
+    </Container>
+  ))
+
+  .add('Without scroll lock', () => (
+    <Container
+      HeaderComponent={() => <h2>Header</h2>}
+      backContent={extraLongContent}
+    >
+      {longContent}
+    </Container>
+  ))
+  .add('With scroll lock', () => (
+    <Container
+      HeaderComponent={() => <h2>Header</h2>}
+      backContent={extraLongContent}
+      lockScroll
+    >
+      {longContent}
+    </Container>
   ))

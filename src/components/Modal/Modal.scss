@@ -79,10 +79,12 @@
 .gpi-modal__closex {
   position: absolute;
   pointer-events: all;
-  padding: 5px;
+  padding: 0;
+  border: none;
   top: 12px;
   right: 12px;
   height: 20px;
+  cursor: pointer;
   width: 20px;
   background-color: $white;
   z-index: 7;

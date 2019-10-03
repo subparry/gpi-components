@@ -10,6 +10,9 @@ const noPropagation = e => {
 const toggleScroll = () => {
   document.body.classList.toggle('gpi-modal--scroll-lock')
 }
+const enableScroll = () => {
+  document.body.classList.remove('gpi-modal--scroll-lock')
+}
 
 const Modal = ({
   HeaderComponent,
@@ -17,10 +20,11 @@ const Modal = ({
   children,
   isOpen,
   closeModal,
-  customHeight = '90vh',
+  customHeight = '80vh',
   customWidth = '80vw',
-  lockScroll,
-  withCloseX,
+  lockScroll = false,
+  heightFix = true,
+  overlayScroll = false,
 }) => {
   useEffect(() => {
     isOpen &&
@@ -30,17 +34,14 @@ const Modal = ({
     if (lockScroll && isOpen) {
       toggleScroll()
     }
+    return enableScroll
+
     //eslint-disable-next-line
   }, [isOpen])
 
-  const onModalClose = () => {
-    lockScroll && toggleScroll()
-    closeModal()
-  }
-
   useEffect(() => {
     const listener = e => {
-      if (e.keyCode === 27) {
+      if (e.key === 'Escape') {
         onModalClose()
       }
     }
@@ -49,6 +50,19 @@ const Modal = ({
     return () => document.removeEventListener('keydown', listener)
     //eslint-disable-next-line
   }, [isOpen])
+
+  const onModalClose = () => {
+    lockScroll && toggleScroll()
+    closeModal()
+  }
+
+  const overlayScrollStyle = overlayScroll
+    ? {
+        position: `absolute`,
+        marginTop: `50px`,
+        top: `100%`,
+      }
+    : {}
 
   return (
     <div
@@ -73,14 +87,17 @@ const Modal = ({
       <div
         onClick={noPropagation}
         className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
-        style={{ height: customHeight, width: customWidth }}
+        style={{
+          height: customHeight,
+          width: customWidth,
+          paddingTop: heightFix ? `40px` : ``,
+          ...overlayScrollStyle,
+        }}
       >
-        <img
-          src={redx}
-          onClick={onModalClose}
-          style={{ cursor: 'pointer' }}
-          className={`gpi-modal__closex`}
-        />
+        <button className={`gpi-modal__closex`} onClick={onModalClose}>
+          <img src={redx} />
+        </button>
+
         {HeaderComponent && (
           <div className="gpi-modal__header">
             <HeaderComponent />
@@ -105,7 +122,7 @@ Modal.propTypes = {
   customHeight: PropTypes.string,
   customWidth: PropTypes.string,
   lockScroll: PropTypes.bool,
-  withCloseX: PropTypes.bool,
+  heightFix: PropTypes.bool,
 }
 
 export default Modal
