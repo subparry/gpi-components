@@ -3,4 +3,7 @@ src
 CODE_OF_CONDUCT.md
 .storybook
 .cache
+.eslintrc
+.prettierrc
+.webpack.config.js
 stories
