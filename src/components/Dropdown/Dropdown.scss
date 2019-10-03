@@ -42,28 +42,28 @@
   @extend .gpi-dropdown__options;
   bottom: 57px;
   left: 0;
-  border-radius: 20px 20px 20px 0;
+  border-radius: 10px 10px 10px 0;
 }
 
 .gpi-dropdown__options--topright {
   @extend .gpi-dropdown__options;
   bottom: 57px;
   right: 0;
-  border-radius: 20px 20px 0 20px;
+  border-radius: 10px 10px 0 10px;
 }
 
 .gpi-dropdown__options--bottomleft {
   @extend .gpi-dropdown__options;
   left: 0;
   top: 57px;
-  border-radius: 0 20px 20px 20px;
+  border-radius: 0 10px 10px 10px;
 }
 
 .gpi-dropdown__options--bottomright {
   @extend .gpi-dropdown__options;
   right: 0;
   top: 57px;
-  border-radius: 20px 0 20px 20px;
+  border-radius: 10px 0 10px 10px;
 }
 
 .gpi-dropdown__options--open {
