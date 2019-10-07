@@ -97,12 +97,12 @@
   bottom: 0;
   left: 18px;
   height: 0px;
-  width: calc(100% - 38px);
-  -webkit-transform: translateX(1px);
-  -moz-transform: translateX(1px);
-  -o-transform: translateX(1px);
-  -ms-transform: translateX(1px);
-  transform: translateX(1px);
+  width: calc(100% - 40px);
+  -webkit-transform: translateX(2px);
+  -moz-transform: translateX(2px);
+  -o-transform: translateX(2px);
+  -ms-transform: translateX(2px);
+  transform: translateX(2px);
   z-index: 2;
   border: $border-width solid $black;
   border-radius: 10px;
