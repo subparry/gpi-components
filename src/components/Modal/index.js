@@ -105,7 +105,7 @@ const Modal = ({
         //Modal
       }
       <div
-        onTransitionEndCapture={() => {
+        onTransitionEnd={() => {
           if (!isOpen && shouldRender) {
             setShouldRender(false)
           }
