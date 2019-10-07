@@ -4,6 +4,7 @@
   position: relative;
   display: inline-block;
   outline: none;
+  z-index: 5000;
   button::--moz-focus-inner {
     border: 0;
   }
