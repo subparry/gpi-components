@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
 
 import Modal from '../components/Modal'
+
 const longContent = ` When a dialog opens, focus placement depends on the nature and size of the
 content. In all circumstances, focus moves to an element contained in the
 dialog. Unless a condition where doing otherwise is advisable, focus is
@@ -40,10 +41,13 @@ aria-label. Optionally, the aria-describedby property is set on the
 element with the dialog role to indicate which element or elements in the
 dialog con`
 const extraLongContent = longContent + longContent + longContent + longContent
-const Container = ({ backContent, children, ...props }) => {
+const WrappedModal = ({ backContent, children, ...props }) => {
   const [isOpen, setIsOpen] = useState(true)
+
   return (
     <>
+      <div id="modal-root"></div>
+      <button onClick={() => setIsOpen(true)}>Open modal</button>
       {backContent}
       <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)} {...props}>
         {children}
@@ -54,70 +58,65 @@ const Container = ({ backContent, children, ...props }) => {
 
 storiesOf('Modal', module)
   .add('Opened and without children', () => (
-    <Modal isOpen={true} closeModal={action('closed modal!')} />
+    <WrappedModal isOpen={true} closeModal={action('closed modal!')} />
   ))
   .add('With header component and no children', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       HeaderComponent={() => <h1>Header!</h1>}
     />
   ))
   .add('With header, footer and no children', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       HeaderComponent={() => <h1>Header!</h1>}
       FooterComponent={() => <h1>Footer!</h1>}
     />
   ))
   .add('With header, footer and children', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       HeaderComponent={() => <h1>Header!</h1>}
       FooterComponent={() => <h1>Footer!</h1>}
     >
       Hello, this is the content
-    </Modal>
+    </WrappedModal>
   ))
   .add('With header, footer and overflowing children', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       HeaderComponent={() => <h1>Header!</h1>}
       FooterComponent={() => <h1>Footer!</h1>}
     >
       {longContent}
-    </Modal>
+    </WrappedModal>
   ))
   .add('With custom height and width', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       customHeight="25vh"
       customWidth="30vw"
     >
       Hello, this is the content
-    </Modal>
+    </WrappedModal>
   ))
   .add('With custom height and width and overflowing content', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       customHeight="25vh"
       customWidth="30vw"
     >
       {longContent}
-    </Modal>
+    </WrappedModal>
   ))
-  .add('closeable modal', () => <Container />)
+  .add('closeable modal', () => <WrappedModal />)
   .add('closeable modal with Header', () => (
-    <Container HeaderComponent={() => <h2 style={{ margin: 0 }}>Header</h2>} />
+    <WrappedModal
+      HeaderComponent={() => <h2 style={{ margin: 0 }}>Header</h2>}
+    />
   ))
   .add('With height auto', () => (
-    <Modal
-      isOpen={true}
+    <WrappedModal
       closeModal={action('closed modal!')}
       customHeight="auto"
       customWidth="30vw"
@@ -125,10 +124,10 @@ storiesOf('Modal', module)
       lockScroll={false}
     >
       {longContent}
-    </Modal>
+    </WrappedModal>
   ))
   .add('With height auto and long back content', () => (
-    <Container
+    <WrappedModal
       HeaderComponent={() => <h2>Header</h2>}
       customHeight="auto"
       customWidth="350px"
@@ -137,23 +136,23 @@ storiesOf('Modal', module)
       lockScroll={false}
     >
       {longContent}
-    </Container>
+    </WrappedModal>
   ))
 
   .add('Without scroll lock', () => (
-    <Container
+    <WrappedModal
       HeaderComponent={() => <h2>Header</h2>}
       backContent={extraLongContent}
       lockScroll={false}
     >
       {longContent}
-    </Container>
+    </WrappedModal>
   ))
   .add('With scroll lock', () => (
-    <Container
+    <WrappedModal
       HeaderComponent={() => <h2>Header</h2>}
       backContent={extraLongContent}
     >
       {longContent}
-    </Container>
+    </WrappedModal>
   ))
