@@ -56,11 +56,7 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false, setValues }) => {
   const calcSpanPosition = handle => {
     const currentLength = handle - min
     return {
-      left: `calc(${(currentLength * 100) / (max - min)}% - ${handleMaxValue(
-        handle,
-        'messagePosition',
-        6
-      )}px)`,
+      left: `calc(${(currentLength * 100) / (max - min)}% - 20px)`,
     }
   }
 
@@ -79,10 +75,6 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false, setValues }) => {
         // Adds a plus sign to the number displayed in the tooltip
         case 'spanMessage':
           return defaultValue + '+'
-        // Adjusts the tooltip number position (because of the plus sign addition)
-        case 'messagePosition':
-          return 12
-
         default:
           return defaultValue
       }
