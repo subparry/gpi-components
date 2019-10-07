@@ -4,7 +4,6 @@
   position: relative;
   display: inline-block;
   outline: none;
-  z-index: 5000;
   button::--moz-focus-inner {
     border: 0;
   }
@@ -74,6 +73,7 @@
 .gpi-dropdown__options--open {
   @extend .gpi-dropdown__options;
   display: block;
+  z-index: 1000;
 }
 
 .gpi-dropdown__button {
