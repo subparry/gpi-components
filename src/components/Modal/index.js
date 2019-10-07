@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import './Modal.css'
 import redx from './20x20_X.svg'
+
+const modalDiv = document.createElement('div')
 
 const noPropagation = e => {
   e.stopPropagation()
@@ -26,11 +29,38 @@ const Modal = ({
   heightFix = true,
   overlayScroll = false,
 }) => {
+  const [shouldRender, setShouldRender] = useState(false)
+  const modalBody = useRef(null)
+  const modalRoot = document.getElementById('modal-root')
+
   useEffect(() => {
-    isOpen &&
-      document.querySelector('.gpi-modal__content').scrollTo({
+    if (isOpen && !shouldRender) {
+      setShouldRender(true)
+    }
+  })
+
+  useEffect(() => {
+    if (shouldRender) {
+      modalRoot.appendChild(modalDiv)
+    }
+    return () => {
+      if (shouldRender) {
+        modalRoot.removeChild(modalDiv)
+      }
+    }
+  }, [shouldRender])
+
+  const onModalClose = () => {
+    closeModal() // Sets isOpen to false
+    lockScroll && toggleScroll()
+  }
+
+  useEffect(() => {
+    if (modalBody) {
+      modalBody.current.scrollTo({
         top: 0,
       })
+    }
     if (lockScroll && isOpen) {
       toggleScroll()
     }
@@ -45,16 +75,11 @@ const Modal = ({
         onModalClose()
       }
     }
-    isOpen && document.addEventListener('keydown', listener)
+    shouldRender && document.addEventListener('keydown', listener)
 
     return () => document.removeEventListener('keydown', listener)
     //eslint-disable-next-line
-  }, [isOpen])
-
-  const onModalClose = () => {
-    lockScroll && toggleScroll()
-    closeModal()
-  }
+  }, [shouldRender])
 
   const overlayScrollStyle = overlayScroll
     ? {
@@ -64,7 +89,7 @@ const Modal = ({
       }
     : {}
 
-  return (
+  return ReactDOM.createPortal(
     <div
       className={`gpi-modal__main-container${isOpen ? `--opened` : `--closed`}`}
     >
@@ -75,16 +100,16 @@ const Modal = ({
       <div
         onClick={onModalClose}
         className={`gpi-modal__overlay${isOpen ? `--opened` : `--closed`}`}
-        style={{
-          transition: isOpen
-            ? 'opacity 0.3s ease 0.1s'
-            : 'opacity 0.3s ease 0.1s, z-index 0s linear 0.2s',
-        }}
       ></div>
       {
         //Modal
       }
       <div
+        onTransitionEndCapture={() => {
+          if (!isOpen && shouldRender) {
+            setShouldRender(false)
+          }
+        }}
         onClick={noPropagation}
         className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
         style={{
@@ -103,14 +128,17 @@ const Modal = ({
             <HeaderComponent />
           </div>
         )}
-        <div className="gpi-modal__content">{children}</div>
+        <div className="gpi-modal__content" ref={modalBody}>
+          {children}
+        </div>
         {FooterComponent && (
           <div className="gpi-modal__footer">
             <FooterComponent />
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    modalDiv
   )
 }
 
