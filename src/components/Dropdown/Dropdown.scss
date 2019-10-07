@@ -3,8 +3,35 @@
 .gpi-dropdown {
   position: relative;
   display: inline-block;
+  outline: none;
+  button::--moz-focus-inner {
+    border: 0;
+  }
 }
 
+.gpi-dropdown__main-button {
+  position: relative;
+  padding-right: 50px;
+  padding-left: 10px;
+
+  .gpi-dropdown__chevron {
+    fill: $black;
+  }
+
+  svg {
+    position: absolute;
+    right: 20px;
+    height: 20px;
+  }
+}
+
+.gpi-dropdown__main-button--fixed-width {
+  @extend .gpi-dropdown__main-button;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .gpi-dropdown__options {
   position: absolute;
   display: none;
@@ -19,28 +46,28 @@
   @extend .gpi-dropdown__options;
   bottom: 57px;
   left: 0;
-  border-radius: 20px 20px 20px 0; 
+  border-radius: 10px 10px 10px 0;
 }
 
 .gpi-dropdown__options--topright {
   @extend .gpi-dropdown__options;
   bottom: 57px;
   right: 0;
-  border-radius: 20px 20px 0 20px;
+  border-radius: 10px 10px 0 10px;
 }
 
 .gpi-dropdown__options--bottomleft {
   @extend .gpi-dropdown__options;
   left: 0;
   top: 57px;
-  border-radius: 0 20px 20px 20px;
+  border-radius: 0 10px 10px 10px;
 }
 
 .gpi-dropdown__options--bottomright {
   @extend .gpi-dropdown__options;
   right: 0;
   top: 57px;
-  border-radius: 20px 0 20px 20px;
+  border-radius: 10px 0 10px 10px;
 }
 
 .gpi-dropdown__options--open {
@@ -70,4 +97,19 @@
     cursor: not-allowed;
     color: graytext;
   }
+}
+
+.gpi-dropdown__arrow {
+  width: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+.gpi-dropdown__arrow--open {
+  @extend .gpi-dropdown__arrow;
+  transform: rotate(180deg);
+}
+
+.gpi-dropdown__arrow--closed {
+  @extend .gpi-dropdown__arrow;
 }

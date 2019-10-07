@@ -35,3 +35,11 @@ storiesOf('Dropdown', module)
   .add('With `defaultoption` option', () => (
     <Dropdown defaultOption={2} id={id} options={options} setValue={setValue} />
   ))
+  .add('With fixedWidth=false', () => (
+    <Dropdown
+      id={id}
+      options={options}
+      setValue={setValue}
+      fixedWidth={false}
+    />
+  ))
