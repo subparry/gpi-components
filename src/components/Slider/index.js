@@ -7,7 +7,7 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false, setValues }) => {
   // firstHandlePosition refers to the value of the first handle of the slider. If the slider is double, it is assigned to the minimum value,
   // if the slider is simple, it is assigned to the middle value rounded down
   const [firstHandlePosition, setFirstHandlePosition] = useState(
-    double ? min : min + Math.floor(max / 2)
+    double ? min : min + Math.floor((max - min) / 2)
   )
   const [secondHandlePosition, setSecondHandlePosition] = useState(max)
 
