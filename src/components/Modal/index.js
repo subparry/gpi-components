@@ -92,11 +92,7 @@ const Modal = ({
   return (
     shouldRender &&
     ReactDOM.createPortal(
-      <div
-        className={`gpi-modal__main-container${
-          isOpen ? `--opened` : `--closed`
-        }`}
-      >
+      <div className="gpi-modal__main-container">
         {
           // Overlay
         }
