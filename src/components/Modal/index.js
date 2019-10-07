@@ -56,7 +56,7 @@ const Modal = ({
   }
 
   useEffect(() => {
-    if (modalBody) {
+    if (shouldRender && modalBody) {
       modalBody.current.scrollTo({
         top: 0,
       })
@@ -89,56 +89,61 @@ const Modal = ({
       }
     : {}
 
-  return ReactDOM.createPortal(
-    <div
-      className={`gpi-modal__main-container${isOpen ? `--opened` : `--closed`}`}
-    >
-      {
-        // Overlay
-      }
-
+  return (
+    shouldRender &&
+    ReactDOM.createPortal(
       <div
-        onClick={onModalClose}
-        className={`gpi-modal__overlay${isOpen ? `--opened` : `--closed`}`}
-      ></div>
-      {
-        //Modal
-      }
-      <div
-        onTransitionEnd={() => {
-          if (!isOpen && shouldRender) {
-            setShouldRender(false)
-          }
-        }}
-        onClick={noPropagation}
-        className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
-        style={{
-          height: customHeight,
-          width: customWidth,
-          paddingTop: heightFix ? `40px` : ``,
-          ...overlayScrollStyle,
-        }}
+        className={`gpi-modal__main-container${
+          isOpen ? `--opened` : `--closed`
+        }`}
       >
-        <button className={`gpi-modal__closex`} onClick={onModalClose}>
-          <img src={redx} />
-        </button>
+        {
+          // Overlay
+        }
 
-        {HeaderComponent && (
-          <div className="gpi-modal__header">
-            <HeaderComponent />
+        <div
+          onClick={onModalClose}
+          className={`gpi-modal__overlay${isOpen ? `--opened` : `--closed`}`}
+        ></div>
+        {
+          //Modal
+        }
+        <div
+          onTransitionEnd={() => {
+            if (!isOpen && shouldRender) {
+              setShouldRender(false)
+            }
+          }}
+          onClick={noPropagation}
+          className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
+          style={{
+            height: customHeight,
+            width: customWidth,
+            paddingTop: heightFix ? `40px` : ``,
+            ...overlayScrollStyle,
+          }}
+        >
+          <button className={`gpi-modal__closex`} onClick={onModalClose}>
+            <img src={redx} />
+          </button>
+
+          {HeaderComponent && (
+            <div className="gpi-modal__header">
+              <HeaderComponent />
+            </div>
+          )}
+          <div className="gpi-modal__content" ref={modalBody}>
+            {children}
           </div>
-        )}
-        <div className="gpi-modal__content" ref={modalBody}>
-          {children}
+          {FooterComponent && (
+            <div className="gpi-modal__footer">
+              <FooterComponent />
+            </div>
+          )}
         </div>
-        {FooterComponent && (
-          <div className="gpi-modal__footer">
-            <FooterComponent />
-          </div>
-        )}
-      </div>
-    </div>,
-    modalDiv
+      </div>,
+      modalDiv
+    )
   )
 }
 
