@@ -8,17 +8,24 @@
 
 .tracks-container {
   $border-width: 2px;
-
   position: absolute;
   bottom: 0;
   left: 18px;
   height: 0px;
   width: calc(100% - 38px);
+  -webkit-transform: translateX(1px);
+  -moz-transform: translateX(1px);
+  -o-transform: translateX(1px);
+  -ms-transform: translateX(1px);
   transform: translateX(1px);
   z-index: 2;
   border: $border-width solid $black;
   border-radius: 10px;
   .active-track {
+    -webkit-transform: translate(-$border-width, -$border-width);
+    -moz-transform: translate(-$border-width, -$border-width);
+    -o-transform: translate(-$border-width, -$border-width);
+    -ms-transform: translate(-$border-width, -$border-width);
     transform: translate(-$border-width, -$border-width);
     position: absolute;
     width: 100%;
@@ -35,6 +42,7 @@ input[type='range'] {
   pointer-events: none;
   top: 0;
   width: 100%;
+  height: 46px;
   border: none;
   background: transparent;
   -webkit-appearance: none;
@@ -49,7 +57,39 @@ input[type='range'] {
     position: relative;
     overflow-x: visible !important;
     appearance: none;
-    background: url('./sliderHandle.png');
+    background: url('./slider-icon.svg');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  &::-moz-range-thumb {
+    pointer-events: auto;
+    position: relative;
+    overflow-x: visible !important;
+    appearance: none;
+    background: url('./slider-icon.svg');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  &::-ms-thumb {
+    pointer-events: auto;
+    position: relative;
+    overflow-x: visible !important;
+    appearance: none;
+    background: url('./slider-icon.svg');
     background-repeat: no-repeat;
     background-size: 40px;
     background-position: center;
@@ -62,14 +102,6 @@ input[type='range'] {
 
   &::-webkit-slider-runnable-track {
     z-index: 0;
-    // border-radius: 4px;
-    // height: 4px;
-    // width: calc(100% + 80px);
-    // text-align: center;
-    // box-shadow: none;
-    // outline: none;
-    // cursor: pointer;
-    // background-color: red;
   }
 }
 
