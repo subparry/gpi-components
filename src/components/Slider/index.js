@@ -49,8 +49,8 @@ const Slider = ({ min = 1, max = 7, step = 1, double = false, setValues }) => {
   // Uses calcFillLength and calcLeft to return a styles object that will be applied to the red stripe
   const calcStyles = () =>
     double
-      ? { width: calcFillLength() + '%', left: calcLeft() + '%' }
-      : { width: calcFillLength() + '%' }
+      ? { width: `calc(${calcFillLength()}% + 4px)`, left: calcLeft() + '%' }
+      : { width: `calc(${calcFillLength()}% + 4px)` }
 
   // Calculates and adjusts the position of the numbers representing the slider current value
   const calcSpanPosition = handle => {
