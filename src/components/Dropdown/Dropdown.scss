@@ -3,6 +3,10 @@
 .gpi-dropdown {
   position: relative;
   display: inline-block;
+  outline: none;
+  button::--moz-focus-inner {
+    border: 0;
+  }
 }
 
 .gpi-dropdown__main-button {

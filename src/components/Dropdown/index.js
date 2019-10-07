@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import './Dropdown.css'
 
@@ -43,10 +43,18 @@ const Dropdown = ({
     }
   }
 
+  useEffect(() => {
+    isOpen && dropdownRef.current.focus()
+  }, [isOpen])
+
   return (
-    <div className="gpi-dropdown" ref={dropdownRef}>
+    <div
+      className="gpi-dropdown"
+      onBlur={handleBlur}
+      ref={dropdownRef}
+      tabIndex="0"
+    >
       <Button
-        onBlur={handleBlur}
         onClick={toggleDropdown}
         variant="neutral"
         className={`gpi-dropdown__main-button${
