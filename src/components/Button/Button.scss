@@ -11,6 +11,8 @@
   cursor: pointer;
   outline: 0;
   width: auto;
+  border-width: 1px;
+  border-style: solid;
   &:active {
     border-top-width: 2px;
     border-bottom-width: 0px;
@@ -25,26 +27,26 @@
   @extend .gpi-btn;
   background-color: $red;
   color: $white;
-  border: 1px solid $red;
+  border-color: $red;
   &:focus {
     background-color: $dark-red;
-    border: 1px solid $dark-red;
+    border-color: $dark-red;
   }
   &:hover {
     background-color: $dark-red;
-    border: 1px solid $dark-red;
+    border-color: $dark-red;
   }
 }
 
 .gpi-btn__primary--disabled {
   @extend .gpi-btn__primary;
   background-color: $light-red;
-  border: $light-red;
+  border-color: transparent;
   cursor: not-allowed;
   &:hover,
   &:focus {
     background-color: $light-red;
-    border: $light-red;
+    border-color: transparent;
   }
 }
 
@@ -52,7 +54,7 @@
   @extend .gpi-btn;
   background-color: $white;
   color: $black;
-  border: 1px solid $gray;
+  border-color: $gray;
   &:focus,
   &:hover {
     background-color: $gray;
