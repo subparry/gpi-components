@@ -1,6 +1,7 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
+import Appstore from './assets/AppStore.svg'
 
 import ButtonLink from '../components/ButtonLink'
 
@@ -8,6 +9,16 @@ storiesOf('ButtonLink', module)
   .add('with default props', () => (
     <ButtonLink href="http://google.com" target="_blank">
       This is a link
+    </ButtonLink>
+  ))
+  .add('with image as child and fixed-width', () => (
+    <ButtonLink href="http://google.com" target="_blank">
+      <img src={Appstore} />
+    </ButtonLink>
+  ))
+  .add('with image as child without fixed-width', () => (
+    <ButtonLink href="http://google.com" target="_blank" fullWidth={true}>
+      <img src={Appstore} />
     </ButtonLink>
   ))
   .add('with variant', () => (
@@ -40,18 +51,8 @@ storiesOf('ButtonLink', module)
     </ButtonLink>
   ))
   .add('with disabled', () => (
-    <ButtonLink href="http://google.com" target="_blank" disabled={true}>
-      Disabled
-    </ButtonLink>
-  ))
-  .add('with disabled and variant', () => (
-    <ButtonLink
-      href="http://google.com"
-      target="_blank"
-      disabled={true}
-      variant="secondary"
-    >
-      Secondary disabled
+    <ButtonLink href="http://google.com" target="_blank" disabled>
+      Submit
     </ButtonLink>
   ))
   .add('with fullwidth', () => (
