@@ -100,6 +100,11 @@
   }
 }
 
+.gpi-dropdown__button--selected {
+  background-color: $red;
+  color: $white;
+}
+
 .gpi-dropdown__arrow {
   width: 20px;
   position: absolute;
