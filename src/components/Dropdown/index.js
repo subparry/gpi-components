@@ -12,15 +12,14 @@ const validPositions = {
 }
 
 const Dropdown = ({
-  defaultOption = 0,
+  fixedWidth = true,
   id,
   options,
   position = 'BOTTOM_LEFT',
   setValue,
-  fixedWidth = true,
+  value,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [option, setOption] = useState(defaultOption)
   const dropdownRef = useRef(null)
 
   const toggleDropdown = () => {
@@ -30,8 +29,7 @@ const Dropdown = ({
   const selectOption = e => {
     e.stopPropagation()
 
-    const { option, value } = e.target.dataset
-    setOption(option)
+    const { value } = e.target.dataset
     setValue(value)
     toggleDropdown()
   }
@@ -42,6 +40,8 @@ const Dropdown = ({
       setIsOpen(false)
     }
   }
+
+  const label = options.get(value).label
 
   useEffect(() => {
     isOpen && dropdownRef.current.focus()
@@ -61,7 +61,7 @@ const Dropdown = ({
           fixedWidth ? `--fixed-width` : ``
         }`}
       >
-        {options[option].label}
+        {label}
 
         <svg
           id="Capa_1"
@@ -82,34 +82,31 @@ const Dropdown = ({
           isOpen ? 'gpi-dropdown__options--open' : ''
         }`}
       >
-        {options.map(({ label, value, disabled = false }, i) => (
-          <button
-            className="gpi-dropdown__button"
-            data-option={i}
-            data-value={value}
-            disabled={disabled}
-            key={`option_${id}_${i}`}
-            onClick={selectOption}
-            type="button"
-          >
-            {label}
-          </button>
-        ))}
+        {Array.from(
+          options,
+          ([optionValue, { label, disabled = false }], i) => (
+            <button
+              className={`gpi-dropdown__button ${
+                optionValue === value ? 'gpi-dropdown__button--selected' : ''
+              }`}
+              data-value={optionValue}
+              disabled={disabled}
+              key={`option_${id}_${i}`}
+              onClick={selectOption}
+              type="button"
+            >
+              {label}
+            </button>
+          )
+        )}
       </div>
     </div>
   )
 }
 
 Dropdown.propTypes = {
-  defaultOption: PropTypes.number,
   id: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      disabled: PropTypes.bool,
-    })
-  ),
+  options: PropTypes.instanceOf(Map).isRequired,
   position: PropTypes.oneOf([
     'TOP_RIGHT',
     'TOP_LEFT',
@@ -117,6 +114,7 @@ Dropdown.propTypes = {
     'BOTTOM_LEFT',
   ]),
   setValue: PropTypes.func.isRequired,
+  value: PropTypes.any.isRequired,
 }
 
 export default Dropdown
