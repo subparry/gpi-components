@@ -3,7 +3,7 @@
 .input-gpi {
   height: 50px;
   border-radius: 30px;
-  border: 1px solid transparent;
+  border: 1px solid $gray;
   background-color: $white;
   padding-left: 21px;
   padding-right: 21px;
@@ -12,6 +12,12 @@
   outline: 0;
   font-size: 15px;
   &:focus {
-    border-color: $gray;
+    -webkit-box-shadow: inset 0px 0px 0px 2px rgba(231, 231, 231, 1);
+    -moz-box-shadow: inset 0px 0px 0px 2px rgba(231, 231, 231, 1);
+    box-shadow: inset 0px 0px 0px 2px rgba(231, 231, 231, 1);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
   }
 }
