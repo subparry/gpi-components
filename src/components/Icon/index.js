@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const icons = require.context('./icons/', false, /\.svg$/)
 
@@ -15,6 +16,59 @@ const Icon = ({ name, color = '#444242' }) => {
       ></use>
     </svg>
   )
+}
+
+Icon.propTypes = {
+  color: PropTypes.string,
+  name: PropTypes.oneOf([
+    '-',
+    'alert',
+    'arrowdown',
+    'arrowleft',
+    'arrowright',
+    'arrowup',
+    'bell',
+    'calendar',
+    'chat',
+    'check',
+    'circle',
+    'cube',
+    'down',
+    'downdown',
+    'download',
+    'favorite',
+    'folder',
+    'heart',
+    'home',
+    'idea',
+    'info',
+    'left',
+    'leftleft',
+    'location',
+    'mail',
+    'menu',
+    'menu02',
+    'mesadetrabajo48',
+    'mesadetrabajo50',
+    'none',
+    'pluss',
+    'reload',
+    'rewindright',
+    'rrewind',
+    'settings',
+    'share',
+    'signal',
+    'star',
+    'time',
+    'triangleright',
+    'up',
+    'up01',
+    'user',
+    'volume-',
+    'volume+',
+    'wait',
+    'x',
+  ]),
 }
 
 export default Icon
