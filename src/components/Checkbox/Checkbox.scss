@@ -1,0 +1,50 @@
+@import '../../styles/color-schema.scss';
+.gpi-check__container {
+  width: 50%;
+  box-sizing: border-box;
+  & *,
+  & *:after {
+    box-sizing: border-box;
+  }
+  padding-right: 10%;
+  & input {
+    width: auto;
+    display: none;
+  }
+
+  > label {
+    width: 23px;
+    height: 23px;
+  }
+
+  > label div {
+    position: relative;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid $gray;
+    height: 23px;
+    width: 23px;
+    background-color: $white;
+
+    &:after {
+      content: '';
+      opacity: 0;
+
+      transition: opacity 0.2s ease;
+      position: absolute;
+      transform: rotate(-50deg);
+      bottom: 8px;
+      left: 4px;
+      width: 14px;
+      height: 7px;
+      border-left: 3px solid;
+      border-bottom: 3px solid;
+      border-color: $black;
+    }
+  }
+  &.checked {
+    > label div:after {
+      opacity: 1;
+    }
+  }
+}
