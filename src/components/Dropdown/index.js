@@ -51,6 +51,7 @@ const Dropdown = ({
     <div
       className="gpi-dropdown"
       onBlur={handleBlur}
+      id={id}
       ref={dropdownRef}
       tabIndex="0"
     >
