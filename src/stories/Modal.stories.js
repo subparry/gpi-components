@@ -156,3 +156,12 @@ storiesOf('Modal', module)
       {longContent}
     </WrappedModal>
   ))
+  .add('With hideX prop', () => (
+    <WrappedModal
+      HeaderComponent={() => <h2>Modal with hideX=true</h2>}
+      backContent={longContent}
+      hideX={true}
+    >
+      {longContent}
+    </WrappedModal>
+  ))

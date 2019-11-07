@@ -28,6 +28,7 @@ const Modal = ({
   lockScroll = true,
   heightFix = true,
   overlayScroll = false,
+  hideX = false,
 }) => {
   const [shouldRender, setShouldRender] = useState(false)
   const modalBody = useRef(null)
@@ -119,9 +120,11 @@ const Modal = ({
             ...overlayScrollStyle,
           }}
         >
-          <button className={`gpi-modal__closex`} onClick={onModalClose}>
-            <img src={redx} />
-          </button>
+          {!hideX && (
+            <button className={`gpi-modal__closex`} onClick={onModalClose}>
+              <img src={redx} />
+            </button>
+          )}
 
           {HeaderComponent && (
             <div className="gpi-modal__header">
