@@ -53,7 +53,7 @@ const Modal = ({
 
   const onModalClose = () => {
     closeModal() // Sets isOpen to false
-    lockScroll && toggleScroll()
+    lockScroll && enableScroll()
   }
 
   useEffect(() => {
