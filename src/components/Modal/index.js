@@ -23,8 +23,8 @@ const Modal = ({
   children,
   isOpen,
   closeModal,
-  customHeight = '80vh',
-  customWidth = '80vw',
+  customHeight,
+  customWidth,
   lockScroll = true,
   heightFix = true,
   overlayScroll = false,
@@ -114,8 +114,8 @@ const Modal = ({
           onClick={noPropagation}
           className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
           style={{
-            height: customHeight,
-            width: customWidth,
+            height: customHeight ? customHeight : '',
+            width: customWidth ? customWidth : '',
             paddingTop: heightFix ? `40px` : ``,
             ...overlayScrollStyle,
           }}

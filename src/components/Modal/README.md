@@ -26,9 +26,9 @@ Modal receives the following props:
 
 #### Optional Props:
 
-- customHeight - Type: **String**, Default: `80vh`
+- customHeight - Type: **String**
   > String representing any valid CSS height value (e.g. "50vh", "100px", "10rem").
-- customWidth - Type: **String**, Default: `80vw`
+- customWidth - Type: **String**
   > String representing any valid CSS width value.
 - FooterComponent - Type: **React Component**
   > React component to be rendered in the Footer section of the modal. This will not be affected by the overflow-y scroll property of the modal body.
