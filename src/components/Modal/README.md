@@ -26,6 +26,8 @@ Modal receives the following props:
 
 #### Optional Props:
 
+- className - Type: **String**, Default: `''`
+  > String attached to the modal itself (not the wrapper nor the overlay) in order to extend its styles.
 - customHeight - Type: **String**
   > String representing any valid CSS height value (e.g. "50vh", "100px", "10rem").
 - customWidth - Type: **String**

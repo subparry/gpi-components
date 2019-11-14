@@ -22,6 +22,7 @@ const Modal = ({
   FooterComponent,
   children,
   isOpen,
+  className = '',
   closeModal,
   customHeight,
   customWidth,
@@ -112,7 +113,9 @@ const Modal = ({
             }
           }}
           onClick={noPropagation}
-          className={`gpi-modal${isOpen ? '--opened' : '--closed'}`}
+          className={`gpi-modal${
+            isOpen ? '--opened' : '--closed'
+          } ${className}`}
           style={{
             height: customHeight ? customHeight : '',
             width: customWidth ? customWidth : '',
