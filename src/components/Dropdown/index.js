@@ -18,11 +18,15 @@ const Dropdown = ({
   position = 'BOTTOM_LEFT',
   setValue,
   value,
+  onOpen,
+  onClose,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
   const toggleDropdown = () => {
+    if (isOpen && onClose) onClose()
+    if (!isOpen && onOpen) onOpen()
     setIsOpen(wasOpen => !wasOpen)
   }
 
@@ -37,6 +41,7 @@ const Dropdown = ({
   const handleBlur = e => {
     const blurTrigger = e.relatedTarget
     if (!dropdownRef.current.contains(blurTrigger)) {
+      onClose && onClose()
       setIsOpen(false)
     }
   }
@@ -116,6 +121,8 @@ Dropdown.propTypes = {
   ]),
   setValue: PropTypes.func.isRequired,
   value: PropTypes.any.isRequired,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
 }
 
 export default Dropdown

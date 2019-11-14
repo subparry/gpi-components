@@ -43,3 +43,21 @@ storiesOf('Dropdown', module)
       fixedWidth={false}
     />
   ))
+  .add('With onOpen callback', () => (
+    <Dropdown
+      id={id}
+      options={options}
+      setValue={setValue}
+      value={2}
+      onOpen={() => console.log('onOpen callback called')}
+    />
+  ))
+  .add('With onClose callback', () => (
+    <Dropdown
+      id={id}
+      options={options}
+      setValue={setValue}
+      value={2}
+      onClose={() => console.log('onClose callback called')}
+    />
+  ))
