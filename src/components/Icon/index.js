@@ -33,6 +33,7 @@ Icon.propTypes = {
     'down',
     'downdown',
     'download',
+    'edit',
     'favorite',
     'folder',
     'heart',
