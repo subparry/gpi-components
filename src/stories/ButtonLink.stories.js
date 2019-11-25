@@ -60,3 +60,8 @@ storiesOf('ButtonLink', module)
       Full Width
     </ButtonLink>
   ))
+  .add('with success variant', () => (
+    <ButtonLink href="http://google.com" target="_blank" variant={'success'}>
+      Success
+    </ButtonLink>
+  ))

@@ -24,3 +24,11 @@ storiesOf('Button', module)
     </Button>
   ))
   .add('with fullwidth', () => <Button fullWidth={true}>Full Width</Button>)
+  .add('with variant success', () => (
+    <Button variant={'success'}>Success!</Button>
+  ))
+  .add('with variant success disabled', () => (
+    <Button variant={'success'} disabled>
+      disabled...
+    </Button>
+  ))

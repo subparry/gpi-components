@@ -70,6 +70,30 @@
   }
 }
 
+.gpi-btn__success {
+  @extend .gpi-btn__neutral;
+  background-color: #00b93f;
+  border-color: #00b93f;
+  color: $white;
+  &:focus,
+  &:hover {
+    background-color: #009e30;
+    border-color: #009e30;
+  }
+}
+
+.gpi-btn__success--disabled {
+  @extend .gpi-btn__success;
+  cursor: not-allowed;
+  background-color: #9cedb7;
+  border-color: #9cedb7;
+  &:focus,
+  &:hover {
+    background-color: #9cedb7;
+    border-color: #9cedb7;
+  }
+}
+
 .gpi-btn__secondary--disabled,
 .gpi-btn__neutral--disabled {
   @extend .gpi-btn__neutral;
