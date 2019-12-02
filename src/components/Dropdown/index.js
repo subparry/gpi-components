@@ -20,6 +20,7 @@ const Dropdown = ({
   value,
   onOpen,
   onClose,
+  disabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
@@ -61,11 +62,11 @@ const Dropdown = ({
       tabIndex="0"
     >
       <Button
-        onClick={toggleDropdown}
+        onClick={!disabled && toggleDropdown}
         variant="neutral"
         className={`gpi-dropdown__main-button${
           fixedWidth ? `--fixed-width` : ``
-        }`}
+        } ${disabled ? `gpi-dropdown__main-button--disabled` : ``}`}
       >
         {label}
 
@@ -123,6 +124,7 @@ Dropdown.propTypes = {
   value: PropTypes.any.isRequired,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 export default Dropdown

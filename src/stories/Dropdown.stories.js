@@ -61,3 +61,12 @@ storiesOf('Dropdown', module)
       onClose={() => console.log('onClose callback called')}
     />
   ))
+  .add('With disabled', () => (
+    <Dropdown
+      id={id}
+      options={options}
+      setValue={setValue}
+      value={2}
+      disabled={true}
+    />
+  ))

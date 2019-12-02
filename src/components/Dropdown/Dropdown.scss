@@ -119,3 +119,8 @@
 .gpi-dropdown__arrow--closed {
   @extend .gpi-dropdown__arrow;
 }
+
+.gpi-dropdown__main-button--disabled {
+  cursor: not-allowed;
+  color: $gray;
+}
