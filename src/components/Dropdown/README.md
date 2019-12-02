@@ -27,6 +27,7 @@ Dropdown accepts the following props:
 
 #### Optional props:
 
+- disabled - Type: **Boolean** > If dropdown should be disabled.
 - onClose - Type: **Function** > A callback function to execute **before** dropdown closes
 - onOpen - Type: **Function** > A callback function to execute **before** dropdown opens
 - position - Type: **String**, default: **BOTTOM_LEFT** > A string containing the current alignement of the dropdown's drop component. Options available are: - TOP_LEFT - TOP_RIGHT - BOTTOM_LEFT - BOTTOM_RIGHT

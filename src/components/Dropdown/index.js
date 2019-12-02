@@ -20,7 +20,7 @@ const Dropdown = ({
   value,
   onOpen,
   onClose,
-  disabled,
+  disabled = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
