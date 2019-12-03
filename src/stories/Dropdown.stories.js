@@ -70,3 +70,6 @@ storiesOf('Dropdown', module)
       disabled={true}
     />
   ))
+  .add('With wrong value', () => (
+    <Dropdown id={id} options={options} setValue={setValue} value={'ssdffd'} />
+  ))

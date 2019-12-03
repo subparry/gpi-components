@@ -47,7 +47,7 @@ const Dropdown = ({
     }
   }
 
-  const label = options.get(value).label
+  const label = options.get(value) ? options.get(value).label : 'Seleccione'
 
   useEffect(() => {
     isOpen && dropdownRef.current.focus()
