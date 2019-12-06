@@ -26,6 +26,8 @@ const Modal = ({
   closeModal,
   customHeight,
   customWidth,
+  maxHeight,
+  maxWidth,
   lockScroll = true,
   heightFix = true,
   overlayScroll = false,
@@ -119,6 +121,8 @@ const Modal = ({
           style={{
             height: customHeight ? customHeight : '',
             width: customWidth ? customWidth : '',
+            maxHeight: maxHeight ? maxHeight : '',
+            maxWidth: maxWidth ? maxWidth : '',
             paddingTop: heightFix ? `40px` : ``,
             ...overlayScrollStyle,
           }}
