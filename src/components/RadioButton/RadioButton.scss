@@ -1,0 +1,47 @@
+@import '../../styles/color-schema.scss';
+.gpi-radio-button {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  box-sizing: border-box;
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+.gpi-radio-button__input {
+  display: none;
+}
+
+.gpi-radio-button__label {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+
+.gpi-radio-button__custom-input {
+  cursor: pointer;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border: 1px solid $gray;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 9px;
+    height: 9px;
+    border-radius: 100%;
+    background-color: $red;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+  }
+
+  &.gpi-radio-button__custom-input--checked {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
