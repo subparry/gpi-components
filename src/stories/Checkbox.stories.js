@@ -14,13 +14,14 @@ const Container = () => {
     />
   )
 }
-const CheckedContainer = () => {
+const CheckedContainer = ({ ...props }) => {
   const [checked, setChecked] = useState(true)
   return (
     <Checkbox
       id="custom-check2"
       checked={checked}
       onChange={() => setChecked(prev => !prev)}
+      {...props}
     />
   )
 }
@@ -34,3 +35,4 @@ storiesOf('Checkbox', module)
   ))
   .add('Functional. Unchecked', () => <Container />)
   .add('Functional. Checked', () => <CheckedContainer />)
+  .add('Functional. Checked, size sm', () => <CheckedContainer size="sm" />)

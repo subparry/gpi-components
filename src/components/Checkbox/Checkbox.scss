@@ -1,8 +1,50 @@
 @import '../../styles/color-schema.scss';
+
+$md-size: 23px;
+$sm-size: 18px;
+
 .gpi-check__container {
   position: relative;
-  width: 23px;
-  height: 23px;
+  &.gpi-check__container--sm {
+    height: $sm-size;
+    width: $sm-size;
+    > label {
+      height: $sm-size;
+      width: $sm-size;
+      > div {
+        height: $sm-size;
+        width: $sm-size;
+        &:after {
+          bottom: 6px;
+          left: 3px;
+          width: 10px;
+          height: 4px;
+          border-left: 2px solid;
+          border-bottom: 2px solid;
+        }
+      }
+    }
+  }
+  &.gpi-check__container--md {
+    height: $md-size;
+    width: $md-size;
+    > label {
+      height: $md-size;
+      width: $md-size;
+      > div {
+        height: $md-size;
+        width: $md-size;
+        &:after {
+          bottom: 8px;
+          left: 4px;
+          width: 14px;
+          height: 7px;
+          border-left: 3px solid;
+          border-bottom: 3px solid;
+        }
+      }
+    }
+  }
   box-sizing: border-box;
   & *,
   & *:after {
@@ -15,8 +57,6 @@
 
   > label {
     position: absolute;
-    width: 23px;
-    height: 23px;
   }
 
   > label div {
@@ -24,8 +64,6 @@
     border-radius: 4px;
     display: inline-block;
     border: 1px solid $gray;
-    height: 23px;
-    width: 23px;
     background-color: $white;
 
     &:after {
@@ -35,12 +73,6 @@
       transition: opacity 0.2s ease;
       position: absolute;
       transform: rotate(-50deg);
-      bottom: 8px;
-      left: 4px;
-      width: 14px;
-      height: 7px;
-      border-left: 3px solid;
-      border-bottom: 3px solid;
       border-color: $black;
     }
   }
