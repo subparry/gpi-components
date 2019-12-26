@@ -1,0 +1,36 @@
+@import '../../styles/color-schema.scss';
+
+.gpi-buttonrange__container {
+  display: flex;
+  > button {
+    height: 20px;
+    min-width: 30px;
+    border-radius: 10px;
+    border: 1px solid $gray;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: $black;
+    transition: border-color 0.2s ease, background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:nth-child(n + 1) {
+      margin-left: 5px;
+    }
+    &:last-child {
+      &:after {
+        content: '+';
+      }
+    }
+  }
+  > .gpi-buttonrange__button--active {
+    color: white;
+    background-color: $light-coral;
+    border-color: $light-coral;
+  }
+  > .gpi-buttonrange__button--limit {
+    color: white;
+    background-color: $red;
+    border-color: $red;
+  }
+}
