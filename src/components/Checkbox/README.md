@@ -20,6 +20,8 @@ Checkbox forwards all props to the input element and receives the following prop
 - checked - Type: **Boolean**, Default: `false`
   > If checkbox is checked.
   > Required for controlling the input via state. **It is recommended** to pass an additional `onChange` prop to enable user interaction.
+- disabled - Type: **Boolean**, Default: `false`
+  > If checkbox is disabled.
 
 ### Example of use:
 

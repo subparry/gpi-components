@@ -36,3 +36,6 @@ storiesOf('Checkbox', module)
   .add('Functional. Unchecked', () => <Container />)
   .add('Functional. Checked', () => <CheckedContainer />)
   .add('Functional. Checked, size sm', () => <CheckedContainer size="sm" />)
+  .add('Functional. Disabled, size sm', () => (
+    <CheckedContainer size="sm" disabled={true} />
+  ))

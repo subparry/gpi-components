@@ -82,3 +82,11 @@ $sm-size: 18px;
     }
   }
 }
+
+.gpi-check__container--disabled {
+  cursor: not-allowed;
+  > label div {
+    background-color: $gray;
+    cursor: not-allowed;
+  }
+}
