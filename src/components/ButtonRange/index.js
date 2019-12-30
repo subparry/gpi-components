@@ -4,7 +4,7 @@ import './ButtonRange.css'
 
 const handleClassName = (selectedValues, btnValue) => {
   const classNameArray = []
-  if (selectedValues.min && selectedValues.max) {
+  if ((selectedValues.min || selectedValues.min === 0) && selectedValues.max) {
     if (btnValue > selectedValues.min && btnValue < selectedValues.max) {
       classNameArray.push('gpi-buttonrange__button--active')
     }
@@ -20,10 +20,10 @@ const ButtonRange = ({ min, max, getValues }) => {
   const btns = Array(btnQty + 1).fill(undefined)
   const [selected, setSelected] = useState({ min: null, max: null })
   const handleClick = value => () => {
-    if (!selected.min && !selected.max) {
+    if (!selected.min && selected.min !== 0 && !selected.max) {
       setSelected({ min: value, max: null })
       getValues({ min: value, max: null })
-    } else if (selected.min && !selected.max) {
+    } else if ((selected.min || selected.min === 0) && !selected.max) {
       if (value > selected.min) {
         setSelected(prev => {
           getValues({ ...prev, max: value })
