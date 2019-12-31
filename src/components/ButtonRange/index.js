@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import './ButtonRange.css'
 
@@ -24,6 +24,9 @@ const ButtonRange = ({
   const btnQty = max - min
   const btns = Array(btnQty + 1).fill(undefined)
   const [selected, setSelected] = useState(value)
+  useEffect(() => {
+    setSelected(value)
+  }, [value])
   const handleClick = value => () => {
     if (!selected.min && selected.min !== 0 && !selected.max) {
       setSelected({ min: value, max: null })

@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
 
 import ButtonRange from '../components/ButtonRange'
+
+const Container = () => {
+  const [val, setVal] = useState({ min: 1, max: 3 })
+  return (
+    <>
+      <ButtonRange
+        min={1}
+        max={5}
+        getValues={values => console.log(values)}
+        value={val}
+      />
+      <button onClick={() => setVal({ min: 3, max: 5 })}>change values</button>
+    </>
+  )
+}
 
 storiesOf('ButtonRange', module)
   .add('with min=1 and max=5', () => (
@@ -19,3 +34,4 @@ storiesOf('ButtonRange', module)
       value={{ min: 2, max: 4 }}
     />
   ))
+  .add('with dynamic value', () => <Container />)
