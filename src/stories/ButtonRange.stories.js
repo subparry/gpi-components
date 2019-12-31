@@ -11,3 +11,11 @@ storiesOf('ButtonRange', module)
   .add('with min=0 and max=5', () => (
     <ButtonRange min={0} max={5} getValues={values => console.log(values)} />
   ))
+  .add('with starting value', () => (
+    <ButtonRange
+      min={0}
+      max={5}
+      getValues={values => console.log(values)}
+      value={{ min: 2, max: 4 }}
+    />
+  ))

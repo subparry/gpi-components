@@ -15,10 +15,15 @@ const handleClassName = (selectedValues, btnValue) => {
   return classNameArray.join(' ')
 }
 
-const ButtonRange = ({ min, max, getValues }) => {
+const ButtonRange = ({
+  min,
+  max,
+  getValues,
+  value = { min: null, max: null },
+}) => {
   const btnQty = max - min
   const btns = Array(btnQty + 1).fill(undefined)
-  const [selected, setSelected] = useState({ min: null, max: null })
+  const [selected, setSelected] = useState(value)
   const handleClick = value => () => {
     if (!selected.min && selected.min !== 0 && !selected.max) {
       setSelected({ min: value, max: null })
@@ -80,6 +85,8 @@ const ButtonRange = ({ min, max, getValues }) => {
 ButtonRange.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
+  getValues: PropTypes.func.isRequired,
+  value: PropTypes.object,
 }
 
 export default ButtonRange
