@@ -20,51 +20,46 @@ const ButtonRange = ({
   max,
   getValues,
   value = { min: null, max: null },
+  isControlled = false,
 }) => {
   const btnQty = max - min
   const btns = Array(btnQty + 1).fill(undefined)
   const [selected, setSelected] = useState(value)
+
   useEffect(() => {
-    setSelected(value)
+    isControlled && setSelected(value)
   }, [value])
+
   const handleClick = value => () => {
     if (!selected.min && selected.min !== 0 && !selected.max) {
-      setSelected({ min: value, max: null })
+      !isControlled && setSelected({ min: value, max: null })
       getValues({ min: value, max: null })
     } else if ((selected.min || selected.min === 0) && !selected.max) {
       if (value > selected.min) {
-        setSelected(prev => {
-          getValues({ ...prev, max: value })
-          return { ...prev, max: value }
-        })
+        getValues({ min: selected.min, max: value })
+        !isControlled && setSelected(prev => ({ ...prev, max: value }))
       } else if (value < selected.min) {
-        setSelected({ min: value, max: selected.min })
+        !isControlled && setSelected({ min: value, max: selected.min })
         getValues({ min: value, max: selected.min })
       } else {
-        setSelected({ min: null, max: null })
+        !isControlled && setSelected({ min: null, max: null })
         getValues({ min: null, max: null })
       }
     } else {
       if (value > selected.min && value < selected.max) {
         return
       } else if (value < selected.min) {
-        setSelected(prev => {
-          getValues({ ...prev, min: value })
-          return { ...prev, min: value }
-        })
+        getValues({ max: selected.max, min: value })
+        !isControlled && setSelected(prev => ({ ...prev, min: value }))
       } else if (value > selected.max) {
-        setSelected(prev => {
-          getValues({ ...prev, max: value })
-          return { ...prev, max: value }
-        })
+        getValues({ min: selected.min, max: value })
+        !isControlled && setSelected(prev => ({ ...prev, max: value }))
       } else if (value === selected.min) {
-        setSelected({ min: selected.max, max: null })
+        !isControlled && setSelected({ min: selected.max, max: null })
         getValues({ min: selected.max, max: null })
       } else if (value === selected.max) {
-        setSelected(prev => {
-          getValues({ ...prev, max: null })
-          return { ...prev, max: null }
-        })
+        getValues({ min: selected.min, max: null })
+        !isControlled && setSelected(prev => ({ ...prev, max: null }))
       }
     }
   }

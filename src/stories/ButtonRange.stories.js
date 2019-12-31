@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
 
@@ -11,8 +11,9 @@ const Container = () => {
       <ButtonRange
         min={1}
         max={5}
-        getValues={values => console.log(values)}
+        getValues={values => setVal(values)}
         value={val}
+        isControlled={true}
       />
       <button onClick={() => setVal({ min: 3, max: 5 })}>change values</button>
     </>
