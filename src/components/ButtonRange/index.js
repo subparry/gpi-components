@@ -21,6 +21,7 @@ const ButtonRange = ({
   getValues,
   value = { min: null, max: null },
   isControlled = false,
+  keyName = 'gpi-buttonRange',
 }) => {
   const btnQty = max - min
   const btns = Array(btnQty + 1).fill(undefined)
@@ -71,6 +72,7 @@ const ButtonRange = ({
           <button
             className={handleClassName(selected, min + i)}
             onClick={handleClick(min + i)}
+            key={`${keyName}-${i}`}
           >
             {min + i}
           </button>
@@ -85,6 +87,7 @@ ButtonRange.propTypes = {
   max: PropTypes.number.isRequired,
   getValues: PropTypes.func.isRequired,
   value: PropTypes.object,
+  keyName: PropTypes.string,
 }
 
 export default ButtonRange
