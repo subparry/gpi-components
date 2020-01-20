@@ -67,6 +67,7 @@ const Dropdown = ({
         className={`gpi-dropdown__main-button${
           fixedWidth ? `--fixed-width` : ``
         } ${disabled ? `gpi-dropdown__main-button--disabled` : ``}`}
+        disabled={disabled}
       >
         {label}
 
