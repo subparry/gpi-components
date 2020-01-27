@@ -30,7 +30,13 @@ const ButtonLink = ({
 }
 
 ButtonLink.propTypes = {
-  variant: PropTypes.oneOf(['primary', 'secondary', 'neutral']),
+  variant: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'neutral',
+    'success',
+    'black',
+  ]),
 }
 
 export default ButtonLink

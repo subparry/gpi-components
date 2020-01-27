@@ -32,3 +32,9 @@ storiesOf('Button', module)
       disabled...
     </Button>
   ))
+  .add('with variant black', () => <Button variant={'black'}>Black</Button>)
+  .add('with variant black disabled', () => (
+    <Button variant={'black'} disabled>
+      disabled...
+    </Button>
+  ))

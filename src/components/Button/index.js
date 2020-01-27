@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import './Button.css'
 
-const admittedVariants = ['primary', 'secondary', 'neutral', 'success']
+const admittedVariants = ['primary', 'secondary', 'neutral', 'success', 'black']
 
 const getVariant = variant =>
   admittedVariants.includes(variant) ? `__${variant}` : '__primary'

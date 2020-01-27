@@ -70,6 +70,31 @@
   }
 }
 
+.gpi-btn__black {
+  @extend .gpi-btn__neutral;
+  background-color: #00000088;
+  border-color: white;
+  color: white;
+  &:focus,
+  &:hover {
+    background-color: #000000bb;
+  }
+}
+
+.gpi-btn__black--disabled {
+  @extend .gpi-btn__black;
+  cursor: not-allowed;
+
+  border-color: white;
+  background-color: #55555588;
+  color: white;
+  &:focus,
+  &:hover {
+    background-color: #55555588;
+    border-color: white;
+  }
+}
+
 .gpi-btn__success {
   @extend .gpi-btn__neutral;
   background-color: #00b93f;
