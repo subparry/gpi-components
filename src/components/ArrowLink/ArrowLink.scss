@@ -1,0 +1,40 @@
+@import '../../styles/color-schema.scss';
+
+.gpi-arrow-link__container {
+  position: relative;
+  display: inline-block;
+  padding-right: 25px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: $black;
+  user-select: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  > svg {
+    position: absolute;
+    right: 0;
+    transform-origin: center;
+    transform: rotate(-90deg) translateX(50%);
+    top: 50%;
+    height: 15px;
+    > path {
+      fill: $red;
+    }
+  }
+  &:hover {
+    color: $red;
+  }
+}
+
+.gpi-arrow-link__container--disabled {
+  @extend .gpi-arrow-link__container;
+  color: $disabled;
+  cursor: not-allowed;
+  &:hover {
+    color: $disabled;
+  }
+  > svg path {
+    fill: $light-gray;
+  }
+}
