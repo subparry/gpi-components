@@ -1,6 +1,7 @@
 @import '../../styles/color-schema.scss';
 
 .gpi-text-link-component__container {
+  width: fit-content;
   position: relative;
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
