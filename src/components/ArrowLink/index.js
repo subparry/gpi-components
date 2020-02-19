@@ -6,7 +6,7 @@ const nameSpace = 'gpi-arrow-link'
 const extractClickProps = ({ location, href, onNewTab, history, disabled }) => {
   const clickProps = {}
   if (disabled) return clickProps
-  if (href) {
+  if (href && typeof window !== 'undefined') {
     clickProps.onClick = () => {
       onNewTab ? window.open(href) : (window.history.href = href)
     }
