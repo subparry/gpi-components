@@ -2,12 +2,11 @@
 
 .gpi-btn {
   min-width: 180px;
-  min-height: 50px;
   border-radius: 30px;
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   cursor: pointer;
+  font-weight: bold;
   outline: 0;
   width: auto;
   border-width: 1px;
@@ -95,6 +94,30 @@
   }
 }
 
+.gpi-btn__club {
+  @extend .gpi-btn__neutral;
+  background-color: rgb(21, 75, 94);
+  border-color: rgb(21, 75, 94);
+  color: white;
+  &:focus,
+  &:hover {
+    background-color: rgb(11, 65, 84);
+    border-color: rgb(11, 65, 84);
+  }
+}
+.gpi-btn__club--disabled {
+  @extend .gpi-btn__club;
+  cursor: not-allowed;
+
+  background-color: rgb(111, 165, 184);
+  border-color: rgb(111, 165, 184);
+  color: white;
+  &:focus,
+  &:hover {
+    background-color: rgb(111, 165, 184);
+    border-color: rgb(111, 165, 184);
+  }
+}
 .gpi-btn__success {
   @extend .gpi-btn__neutral;
   background-color: #00b93f;
@@ -130,4 +153,17 @@
     color: $gray;
     border-color: $gray;
   }
+}
+
+.gpi-btn__lg {
+  min-height: 50px;
+  font-size: 15px;
+}
+.gpi-btn__md {
+  min-height: 40px;
+  font-size: 15px;
+}
+.gpi-btn__sm {
+  min-height: 30px;
+  font-size: 12px;
 }

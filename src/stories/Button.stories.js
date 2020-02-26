@@ -38,3 +38,19 @@ storiesOf('Button', module)
       disabled...
     </Button>
   ))
+  .add('with variant club', () => <Button variant={'club'}>Club</Button>)
+  .add('with variant club disabled', () => (
+    <Button variant={'club'} disabled>
+      disabled...
+    </Button>
+  ))
+  .add('with variant club, size md', () => (
+    <Button variant={'club'} size={'md'}>
+      Club md
+    </Button>
+  ))
+  .add('with variant club, size sm', () => (
+    <Button variant={'club'} size={'sm'}>
+      Club sm
+    </Button>
+  ))

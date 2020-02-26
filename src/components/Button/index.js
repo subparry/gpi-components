@@ -2,10 +2,21 @@ import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import './Button.css'
 
-const admittedVariants = ['primary', 'secondary', 'neutral', 'success', 'black']
+const admittedVariants = [
+  'primary',
+  'secondary',
+  'neutral',
+  'success',
+  'black',
+  'club',
+]
+
+const admittedSizes = ['lg', 'md', 'sm']
 
 const getVariant = variant =>
   admittedVariants.includes(variant) ? `__${variant}` : '__primary'
+
+const getSize = size => (admittedSizes.includes(size) ? `__${size}` : '__lg')
 
 const Button = forwardRef(
   (
@@ -18,13 +29,16 @@ const Button = forwardRef(
       onClick,
       type = 'button',
       variant = 'primary',
+      size = 'lg',
     },
     ref
   ) => (
     <button
       className={`gpi-btn${getVariant(variant)}${
         disabled ? `--disabled` : ''
-      } ${fullWidth ? `gpi-btn--full-width` : ''} ${className}`}
+      } ${fullWidth ? `gpi-btn--full-width` : ''} gpi-btn${getSize(
+        size
+      )} ${className}`}
       disabled={disabled}
       onBlur={onBlur}
       onClick={onClick}
@@ -45,6 +59,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
   variant: PropTypes.string,
+  size: PropTypes.string,
 }
 
 export default Button
